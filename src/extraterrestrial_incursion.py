@@ -3,6 +3,7 @@ import sys
 import pygame
 
 from settings import Settings
+from ship import Ship
 
 class ExtraterrestrialIncursion:
     """Overall class to manage game assets and behavior."""
@@ -19,8 +20,8 @@ class ExtraterrestrialIncursion:
         # represents the entire game window.
         pygame.display.set_caption("Extraterrestrial Incursion")
 
-        # Set the background color.
-        self.bg_color = (230, 230, 230)
+        # Initialize ship after setting up the screen
+        self.ship = Ship(self)
     
     def run_game(self):
         """Start the main loop for a game."""
@@ -32,6 +33,7 @@ class ExtraterrestrialIncursion:
 
             # Redraw the screen during each passthrough the loop.
             self.screen.fill(self.settings.bg_color)
+            self.ship.blitme()
 
             # Make the most recently drawn screen visible.
             pygame.display.flip()
