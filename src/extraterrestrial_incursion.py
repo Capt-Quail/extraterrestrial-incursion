@@ -53,6 +53,8 @@ class ExtraterrestrialIncursion:
             self.ship.moving_left = True
         elif event.key == pygame.K_q:
             sys.exit()
+        elif event.key == pygame.K_SPACE:
+            self._fire_bullet()
 
     def _check_keyup_events(self, event):
         """Respond to key release."""
@@ -64,8 +66,16 @@ class ExtraterrestrialIncursion:
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""
         self.screen.fill(self.settings.bg_color)
+        for bullet in self.bullets.sprites():
+            bullet.draw_bullet
         self.ship.blitme()
+        
         pygame.display.flip()
+
+    def _fire_bullet(self):
+        """Create a new bullet and add it to the bullets group."""
+        new_bullet = Bullet(self)
+        self.bullets.add(new_bullet)
 
 if __name__ == '__main__':
     # Make a game instance, and run the game.
