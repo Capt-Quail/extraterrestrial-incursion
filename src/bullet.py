@@ -6,7 +6,7 @@ class Bullet(Sprite):
 
     def __init__(self, ei_game):
         """Create a bullet object at the ship's current position."""
-        super().__init__
+        super().__init__()
         self.screen = ei_game.screen
         self.settings = ei_game.settings 
         self.color = self.settings.bullet_color

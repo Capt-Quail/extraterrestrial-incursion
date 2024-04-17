@@ -67,7 +67,7 @@ class ExtraterrestrialIncursion:
         """Update images on the screen, and flip to the new screen."""
         self.screen.fill(self.settings.bg_color)
         for bullet in self.bullets.sprites():
-            bullet.draw_bullet
+            bullet.draw_bullet()
         self.ship.blitme()
         
         pygame.display.flip()
