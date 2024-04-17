@@ -4,6 +4,7 @@ import pygame
 
 from settings import Settings
 from ship import Ship
+from bullet import Bullet
 
 class ExtraterrestrialIncursion:
     """Overall class to manage game assets and behavior."""
@@ -23,12 +24,14 @@ class ExtraterrestrialIncursion:
 
         # Initialize ship after setting up the screen
         self.ship = Ship(self)
+        self.bullets = pygame.sprite.Group()
     
     def run_game(self):
         """Start the main loop for a game."""
         while True:
             self._check_events()
             self.ship.update()
+            self.bullets.update()
             self._update_screen()
             self.clock.tick(60)
     
