@@ -39,7 +39,6 @@ class ExtraterrestrialIncursion:
             for bullet in self.bullets.copy():
                 if bullet.rect.bottom <= 0:
                     self.bullets.remove(bullet)
-            print(len(self.bullets))
     
     def _check_events(self):
         """Respond to krypress and mouse events."""
