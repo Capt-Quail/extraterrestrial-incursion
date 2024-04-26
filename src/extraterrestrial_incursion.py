@@ -5,6 +5,7 @@ import pygame
 from settings import Settings
 from ship import Ship
 from bullet import Bullet
+from alien import Alien
 
 class ExtraterrestrialIncursion:
     """Overall class to manage game assets and behavior."""
@@ -25,6 +26,9 @@ class ExtraterrestrialIncursion:
         # Initialize ship after setting up the screen
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
+        self.aliens = pygame.sprite.Group()
+
+        self._create_fleet()
     
     def run_game(self):
         """Start the main loop for a game."""
@@ -62,6 +66,12 @@ class ExtraterrestrialIncursion:
             self.ship.moving_right = False
         elif event.key == pygame.K_LEFT:
             self.ship.moving_left = False
+    
+    def _create_fleet_(self):
+        """Create the fleet of aliens."""
+        # Make an alien
+        alien = Alien(self)
+        self.aliens.add(alien)
 
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""
@@ -69,6 +79,7 @@ class ExtraterrestrialIncursion:
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
         self.ship.blitme()
+        self.aliens.draw(self.screen)
         
         pygame.display.flip()
 
