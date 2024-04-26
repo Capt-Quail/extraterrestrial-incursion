@@ -28,7 +28,7 @@ class ExtraterrestrialIncursion:
         self.bullets = pygame.sprite.Group()
         self.aliens = pygame.sprite.Group()
 
-        self._create_fleet()
+        self._create_fleet_()
     
     def run_game(self):
         """Start the main loop for a game."""
