@@ -129,7 +129,7 @@ class ExtraterrestrialIncursion:
             self._create_fleet()
     
     def _update_aliens(self):
-        """Check if the fleet is ar an edge, then update positions."""
+        """Check if the fleet is at an edge, then update positions."""
         self._check_fleet_edges()
         self.aliens.update()
     
