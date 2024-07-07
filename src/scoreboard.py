@@ -6,7 +6,7 @@ class ScoreBoard:
     def __init__(self, ei_game):
         """Initialize scorekeeping attributes."""
         self.screen = ei_game.screen
-        self.screen.rect = self.screen.get_rect()
+        self.screen_rect = self.screen.get_rect()
         self.settings = ei_game.settings
         self.stats = ei_game.stats
 
