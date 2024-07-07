@@ -64,6 +64,9 @@ class ExtraterrestrialIncursion:
                 self._check_keydown_events(event)    
             elif event.type == pygame.KEYUP:
                 self._check_keyup_events(event)
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = pygame.mouse.get_pos()
+                self._check_play_button(mouse_pos)
                 
     def _check_keydown_events(self, event):
         """Respond to keypress."""
@@ -200,6 +203,11 @@ class ExtraterrestrialIncursion:
             if alien.rect.bottom >= self.settings.screen_height:
                 self._ship_hit()
                 break
+    
+    def _check_play_button(self, mouse_pos):
+        """Start a new game when the player clicks Begin."""
+        if self.play_button.rect.collidepoint(mouse_pos):
+            self.game_active = True        
 
 if __name__ == '__main__':
     # Make a game instance, and run the game.
