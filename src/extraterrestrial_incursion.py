@@ -5,6 +5,7 @@ import pygame
 
 from settings import Settings
 from game_stats import GameStats
+from button import Button
 from ship import Ship
 from bullet import Bullet
 from alien import Alien
@@ -35,8 +36,11 @@ class ExtraterrestrialIncursion:
 
         self._create_fleet()
 
-        #Start Extraterrestrial Incursion in an active state.
-        self.game_active = True
+        #Start Extraterrestrial Incursion in an inactive state.
+        self.game_active = False
+
+        # Make the Play button.
+        self.play_button = Button(self, "BEGIN")
     
     def run_game(self):
         """Start the main loop for a game."""
@@ -47,8 +51,9 @@ class ExtraterrestrialIncursion:
                 self.ship.update()
                 self._update_bullets()
                 self._update_aliens()
-                self._update_screen()
-                self.clock.tick(60)
+                
+            self._update_screen()
+            self.clock.tick(60)
     
     def _check_events(self):
         """Respond to krypress and mouse events."""
@@ -110,6 +115,10 @@ class ExtraterrestrialIncursion:
             bullet.draw_bullet()
         self.ship.blitme()
         self.aliens.draw(self.screen)
+
+        # Draw the play button if the game is inactive.
+        if not self.game_active:
+            self.play_button.draw_button()
         
         pygame.display.flip()
 
@@ -154,7 +163,7 @@ class ExtraterrestrialIncursion:
         self._check_aliens_bottom()
     
     def _check_fleet_edges(self):
-        """respond appropriately if any aliens have reached an edge."""
+        """Respond appropriately if any aliens have reached an edge."""
         for alien in self.aliens.sprites():
             if alien.check_edges():
                 self._change_fleet_direction()
