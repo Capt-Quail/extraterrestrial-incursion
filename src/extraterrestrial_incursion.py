@@ -206,8 +206,19 @@ class ExtraterrestrialIncursion:
     
     def _check_play_button(self, mouse_pos):
         """Start a new game when the player clicks Begin."""
-        if self.play_button.rect.collidepoint(mouse_pos):
-            self.game_active = True        
+        button_clicked = self.play_button.rect.collidepoint(mouse_pos)
+        if button_clicked and not self.game_active:
+            # Reset the game statistics.
+            self.stats.reset_stats()
+            self.game_active = True
+            
+            # Get rid of any remaining bullets and aliens.
+            self.bullets.empty()
+            self.aliens.empty()
+
+            # Create a new fleet and center the ship.
+            self._create_fleet()
+            self.ship.center_ship()        
 
 if __name__ == '__main__':
     # Make a game instance, and run the game.
